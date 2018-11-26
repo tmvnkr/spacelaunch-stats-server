@@ -1,24 +1,14 @@
 import { gql } from 'apollo-server-express';
 
 export default gql`
-  type Query {
-    users: [User!]
-    user(id: ID!): User
-    me: User
-
+  extend type Query {
     messages: [Message!]!
     message(id: ID!): Message!
   }
 
-  type Mutation {
+  extend type Mutation {
     createMessage(text: String!): Message!
     deleteMessage(id: ID!): Boolean!
-  }
-
-  type User {
-    id: ID!
-    username: String!
-    messages: [Message!]
   }
 
   type Message {

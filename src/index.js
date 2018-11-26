@@ -1,5 +1,6 @@
 import express from 'express';
 import { ApolloServer } from 'apollo-server-express';
+import helmet from 'helmet';
 import cors from 'cors';
 import typeDefs from './schema';
 import resolvers from './resolvers';
@@ -15,6 +16,7 @@ const server = new ApolloServer({
   }
 });
 const app = express();
+app.use(helmet());
 server.applyMiddleware({ app });
 
 // Allow cross-origin resource sharing
