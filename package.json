@@ -9,7 +9,14 @@
   },
   "author": "Tim Vaneker",
   "license": "MIT",
-  "dependencies": {},
+  "dependencies": {
+    "apollo-server": "^2.2.2",
+    "apollo-server-express": "^2.2.2",
+    "cors": "^2.8.5",
+    "dotenv": "^6.1.0",
+    "express": "^4.16.4",
+    "graphql": "^14.0.2"
+  },
   "devDependencies": {
     "nodemon": "^1.18.6"
   }
