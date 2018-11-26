@@ -1,20 +1,29 @@
-const { gql } = require('apollo-server');
+import { gql } from 'apollo-server-express';
 
-const typeDefs = gql`
+export default gql`
   type Query {
+    users: [User!]
+    user(id: ID!): User
     me: User
+
+    messages: [Message!]!
+    message(id: ID!): Message!
   }
 
-  type Pet {
-    name: String!
+  type Mutation {
+    createMessage(text: String!): Message!
+    deleteMessage(id: ID!): Boolean!
   }
 
   type User {
     id: ID!
     username: String!
-    age: Int!
-    pets: [Pet]
+    messages: [Message!]
+  }
+
+  type Message {
+    id: ID!
+    text: String!
+    user: User!
   }
 `;
-
-module.exports = typeDefs;

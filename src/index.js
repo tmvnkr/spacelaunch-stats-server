@@ -1,11 +1,19 @@
-const express = require('express');
-const { ApolloServer } = require('apollo-server-express');
-const cors = require('cors');
-const typeDefs = require('./schema');
-const resolvers = require('./resolvers');
+import express from 'express';
+import { ApolloServer } from 'apollo-server-express';
+import cors from 'cors';
+import typeDefs from './schema';
+import resolvers from './resolvers';
+import models from './models';
 
 // Create server
-const server = new ApolloServer({ typeDefs, resolvers });
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+  context: {
+    models,
+    me: models.users[1]
+  }
+});
 const app = express();
 server.applyMiddleware({ app });
 
