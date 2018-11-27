@@ -16,6 +16,7 @@ const server = new ApolloServer({
   }
 });
 const app = express();
+// Add extra security rules to the http header
 app.use(helmet());
 server.applyMiddleware({ app });
 
