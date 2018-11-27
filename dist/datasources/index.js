@@ -1,1 +1,7 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.default=void 0;var users={1:{id:"1",username:"Robin Wieruch",messageIds:[1]},2:{id:"2",username:"Dave Davids",messageIds:[2]}},messages={1:{id:"1",text:"Hello World",userId:"1"},2:{id:"2",text:"By World",userId:"2"}},_default={users:users,messages:messages};exports.default=_default;
+"use strict";var _SpaceXDataAPI=_interopRequireDefault(require("./SpaceXDataAPI"));Object.defineProperty(exports,"__esModule",{value:!0}),exports.default=void 0;function _interopRequireDefault(a){return a&&a.__esModule?a:{default:a}}/**
+ * datasources are classes that encapsulate all of the data fetching logic ,as well
+ * as caching and deduplication, for a particular service.
+ *
+ * Reducers transform the data into the shape defined by the schema.
+ *
+ */var _default=_SpaceXDataAPI.default;exports.default=_default;

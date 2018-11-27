@@ -6,6 +6,6 @@
  *
  */
 
-import LaunchAPI from './spacexdata/launch';
+import SpaceXDataAPI from './SpaceXDataAPI';
 
-export default LaunchAPI;
+export default SpaceXDataAPI;

@@ -1,14 +1,14 @@
 import { RESTDataSource } from 'apollo-datasource-rest';
 
 /**
- * SpaceX LaunchAPI data source.
- * @class LaunchAPI
+ * SpaceX SpaceXDataAPI data source.
+ * @class SpaceXDataAPI
  * @extends {RESTDataSource}
  */
-class LaunchAPI extends RESTDataSource {
+class SpaceXDataAPI extends RESTDataSource {
   /**
-   * Creates an instance of LaunchAPI and set the base URL for the API.
-   * @memberof LaunchAPI
+   * Creates an instance of SpaceXDataAPI and set the base URL for the API.
+   * @memberof SpaceXDataAPI
    */
   constructor() {
     super();
@@ -16,45 +16,10 @@ class LaunchAPI extends RESTDataSource {
   }
 
   /**
-   * Make GET request and return an array with launches.
-   * @returns array with launches OR empty array
-   * @memberof LaunchAPI
-   */
-  async getAllLaunches() {
-    const response = await this.get('launches');
-    return response && response.length
-      ? response.map(launch => this.launchReducer(launch))
-      : [];
-  }
-
-  /**
-   * Return data for a particular launch.
-   * @param {ID} { launchId }
-   * @returns single launch
-   * @memberof LaunchAPI
-   */
-  async getLaunchById({ launchId }) {
-    const response = await this.get('launches', { flight_number: launchId });
-    return this.launchReducer(response[0]);
-  }
-
-  /**
-   * Returns several launches based on their respective launchIds.
-   * @param {ID} { launchIds }
-   * @returns multiple launches
-   * @memberof LaunchAPI
-   */
-  getLaunchesByIds({ launchIds }) {
-    return Promise.all(
-      launchIds.map(launchId => this.getLaunchById({ launchId }))
-    );
-  }
-
-  /**
    * Transform data in form of launch schema.
    * @param {array} launch
    * @returns launch array
-   * @memberof LaunchAPI
+   * @memberof SpaceXDataAPI
    */
   launchReducer(launch) {
     return {
@@ -73,6 +38,41 @@ class LaunchAPI extends RESTDataSource {
       }
     };
   }
+
+  /**
+   * Make GET request and return an array with launches.
+   * @returns array with launches OR empty array
+   * @memberof SpaceXDataAPI
+   */
+  async getAllLaunches() {
+    const response = await this.get('launches');
+    return response && response.length
+      ? response.map(launch => this.launchReducer(launch))
+      : [];
+  }
+
+  /**
+   * Return data for a particular launch.
+   * @param {ID} { launchId }
+   * @returns single launch
+   * @memberof SpaceXDataAPI
+   */
+  async getLaunchById({ launchId }) {
+    const response = await this.get('launches', { flight_number: launchId });
+    return this.launchReducer(response[0]);
+  }
+
+  /**
+   * Returns several launches based on their respective launchIds.
+   * @param {ID} { launchIds }
+   * @returns multiple launches
+   * @memberof SpaceXDataAPI
+   */
+  getLaunchesByIds({ launchIds }) {
+    return Promise.all(
+      launchIds.map(launchId => this.getLaunchById({ launchId }))
+    );
+  }
 }
 
-export default LaunchAPI;
+export default SpaceXDataAPI;

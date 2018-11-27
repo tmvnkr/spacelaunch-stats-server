@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.default=void 0;var _default={Query:{launches:async(a,b,{dataSources:c})=>c.spaceXDataAPI.getAllLaunches(),launch:(a,{id:b},{dataSources:c})=>c.spaceXDataAPI.getLaunchById({launchId:b})}};exports.default=_default;

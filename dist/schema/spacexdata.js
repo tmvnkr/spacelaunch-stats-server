@@ -1,6 +1,4 @@
-import { gql } from 'apollo-server-express';
-
-const typeDefs = gql`
+"use strict";var _apolloServerExpress=require("apollo-server-express");Object.defineProperty(exports,"__esModule",{value:!0}),exports.default=void 0;const typeDefs=_apolloServerExpress.gql`
   extend type Query {
     launches: [Launch]!
     launch(id: ID!): Launch
@@ -28,6 +26,4 @@ const typeDefs = gql`
     SMALL
     LARGE
   }
-`;
-
-export default typeDefs;
+`;var _default=typeDefs;exports.default=_default;
