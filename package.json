@@ -5,12 +5,14 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon --exec babel-node src/index.js",
-    "build": "babel src --out-dir dist",
+    "build": "babel src --ignore */__tests__ --out-dir dist",
+    "delete": "rm -rf dist/*",
     "serve": "node dist/index.js"
   },
   "author": "Tim Vaneker",
   "license": "MIT",
   "dependencies": {
+    "apollo-datasource-rest": "^0.2.1",
     "apollo-server": "^2.2.2",
     "apollo-server-express": "^2.2.2",
     "cors": "^2.8.5",

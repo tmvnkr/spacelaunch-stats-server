@@ -4,16 +4,12 @@ import helmet from 'helmet';
 import cors from 'cors';
 import typeDefs from './schema';
 import resolvers from './resolvers';
-import models from './models';
+import datasources from './datasources';
 
 // Create server
 const server = new ApolloServer({
   typeDefs,
-  resolvers,
-  context: {
-    models,
-    me: models.users[1]
-  }
+  resolvers
 });
 const app = express();
 // Add extra security rules to the http header
@@ -26,7 +22,5 @@ app.use(cors());
 const PORT = process.env.PORT || 4000;
 
 app.listen({ port: PORT }, () =>
-  console.log(
-    `🚀 Server ready at http://localhost:${PORT + server.graphqlPath}`
-  )
+  console.log(`Server ready at http://localhost:${PORT + server.graphqlPath}`)
 );

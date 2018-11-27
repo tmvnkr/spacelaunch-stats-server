@@ -1,7 +1,11 @@
+/**
+ * Schemas are blueprints for all the data that can be accessed in the graph.
+ *
+ */
+
 import { gql } from 'apollo-server-express';
 
-import userSchema from './user';
-import messageSchema from './message';
+import launchSchema from './spacexdata/launch';
 
 const linkSchema = gql`
   type Query {
@@ -17,4 +21,4 @@ const linkSchema = gql`
   }
 `;
 
-export default [linkSchema, userSchema, messageSchema];
+export default [linkSchema, launchSchema];
