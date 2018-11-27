@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.default=void 0;var _user=_interopRequireDefault(require("./user")),_message=_interopRequireDefault(require("./message"));function _interopRequireDefault(a){return a&&a.__esModule?a:{default:a}}var _default=[_user.default,_message.default];exports.default=_default;
