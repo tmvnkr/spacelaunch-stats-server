@@ -1,1 +1,5 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.default=void 0;var _default={Query:{launches:async(a,b,{dataSources:c})=>c.spaceXDataAPI.getAllLaunches(),launch:(a,{id:b},{dataSources:c})=>c.spaceXDataAPI.getLaunchById({launchId:b})}};exports.default=_default;
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.default=void 0;var _utils=require("../utils"),_default={Query:{launches:async(a,{pageSize:c=20,after:b},{dataSources:d})=>{const e=await d.spaceXDataAPI.getAllLaunches();// we want these in reverse chronological order
+e.reverse();const f=(0,_utils.paginateResults)({after:b,pageSize:c,results:e});return{launches:f,cursor:f.length?f[f.length-1].cursor:null,// if the cursor of the end of the paginated results is the same as the
+// last item in _all_ results, then there are no more results after this
+hasMore:!!f.length&&f[f.length-1].cursor!==e[e.length-1].cursor}},launch:(a,{id:b},{dataSources:c})=>c.spaceXDataAPI.getLaunchById({launchId:b})},Mission:{// make sure the default size is 'large' in case user doesn't specify
+missionPatch:(a,{size:b}={size:"LARGE"})=>"SMALL"===b?a.missionPatchSmall:a.missionPatchLarge}};exports.default=_default;

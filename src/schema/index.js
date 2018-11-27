@@ -20,4 +20,4 @@ const linkSchema = gql`
   }
 `;
 
-export default [linkSchema, spacexdataSchema];
+export default [linkSchema, spacexdataSchema]; 

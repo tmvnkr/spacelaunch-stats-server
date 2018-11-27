@@ -1,4 +1,4 @@
-export default (paginateResults = ({
+export const paginateResults = ({
   after: cursor,
   pageSize = 20,
   results,
@@ -26,4 +26,4 @@ export default (paginateResults = ({
     : results.slice(0, pageSize);
 
   results.slice(cursorIndex >= 0 ? cursorIndex + 1 : 0, cursorIndex >= 0);
-});
+};
