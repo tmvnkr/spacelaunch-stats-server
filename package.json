@@ -1,6 +1,6 @@
 {
   "name": "spacex-wiki-server",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Backend for the SpaceX wiki app",
   "main": "index.js",
   "scripts": {
