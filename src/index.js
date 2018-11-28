@@ -9,9 +9,10 @@ import resolvers from './resolvers';
 
 import SpaceXDataAPI from './datasources';
 
+// Make .env accesible in this file
 require('dotenv').config();
 
-// set up any dataSources our resolvers need
+// Set up any dataSources our resolvers need
 const dataSources = () => ({
   spaceXDataAPI: new SpaceXDataAPI()
 });
