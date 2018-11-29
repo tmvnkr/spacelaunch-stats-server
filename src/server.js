@@ -3,6 +3,7 @@ import { ApolloServer } from 'apollo-server-express';
 
 import helmet from 'helmet';
 import cors from 'cors';
+import path from 'path';
 
 import typeDefs from './schema';
 import resolvers from './resolvers';
@@ -38,6 +39,11 @@ server.applyMiddleware({ app });
 
 // Allow cross-origin resource sharing
 app.use(cors());
+
+app.use(express.static('public'));
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, 'public', 'index.html'));
+});
 
 // Start our server
 const PORT = process.env.PORT || 5000;

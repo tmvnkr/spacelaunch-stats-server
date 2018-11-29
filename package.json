@@ -2,12 +2,12 @@
   "name": "spacex-wiki-server",
   "version": "0.0.2-alpha",
   "description": "Backend for the SpaceX wiki app",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "start": "nodemon --exec babel-node src/index.js",
+    "start": "node dist/server.js",
     "build": "babel src --ignore */__tests__ --out-dir dist",
     "delete": "rm -rf dist/*",
-    "serve": "node dist/index.js"
+    "server": "nodemon --exec babel-node src/server.js"
   },
   "author": "Tim Vaneker",
   "license": "MIT",
