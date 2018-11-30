@@ -7,16 +7,11 @@ import path from 'path';
 
 import typeDefs from './schema';
 import resolvers from './resolvers';
-
-import SpaceXAPI from './datasources/datasources';
+import dataSources from './datasources';
+// import Capsule from './datasources/spacex-api/capsule';
 
 // Make .env accesible in this file
 require('dotenv').config();
-
-// Set up any dataSources the resolvers need
-const dataSources = () => ({
-  spaceXAPI: new SpaceXAPI()
-});
 
 // Set up Apollo Server
 const server = new ApolloServer({

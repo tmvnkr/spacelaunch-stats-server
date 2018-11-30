@@ -1,8 +1,8 @@
 export default {
   Query: {
     capsules: async (_, __, { dataSources }) =>
-      dataSources.spaceXAPI.getAllCapsules(),
+      dataSources.sxCapsule.getAllCapsules(),
     capsule: (_, { serial }, { dataSources }) =>
-      dataSources.spaceXAPI.getCapsuleById({ serial })
+      dataSources.sxCapsule.getCapsuleById({ serial })
   }
 };

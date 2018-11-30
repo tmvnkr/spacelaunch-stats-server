@@ -12,6 +12,7 @@
  * - info:    Information about the execution state of the operation which should only be used in advanced cases
  */
 
-import spaceXAPIResolvers from './spacex-api';
+import launch from './spacex-api/launch';
+import capsule from './spacex-api/capsule';
 
-export default spaceXAPIResolvers;
+export default [capsule, launch];

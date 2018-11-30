@@ -3,9 +3,14 @@
  * as caching and deduplication, for a particular service.
  *
  * Reducers transform the data into the shape defined by the schema.
- *
  */
 
-import SpaceXAPI from './spacex-api';
+import Capsule from './spacex-api/capsule';
+import Launch from './spacex-api/launch';
 
-export default SpaceXAPI;
+const dataSources = () => ({
+  sxCapsule: new Capsule(),
+  sxLaunch: new Launch()
+});
+
+export default dataSources;

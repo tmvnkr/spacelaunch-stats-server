@@ -13,45 +13,11 @@
 
 import { RESTDataSource } from 'apollo-datasource-rest';
 
-class SpaceXAPI extends RESTDataSource {
+class Launch extends RESTDataSource {
   constructor() {
     super();
     this.baseURL = 'https://api.spacexdata.com/v3/';
   }
-
-  capsuleReducer(capsule) {
-    return {
-      serial: capsule.capsule_serial || 'N/A',
-      id: capsule.capsule_id,
-      status: capsule.status,
-      launchDate: capsule.original_launch,
-      launchDateUnix: capsule.original_launch_unix,
-      missions: capsule.missions,
-      landings: capsule.landings,
-      type: capsule.type,
-      details: capsule.details,
-      reuse: capsule.reuse_count
-    };
-  }
-
-  async getAllCapsules() {
-    const response = await this.get('capsules');
-    return response && response.length
-      ? response.map(capsule => this.capsuleReducer(capsule))
-      : [];
-  }
-
-  async getCapsuleById({ serial }) {
-    const response = await this.get('capsules', {
-      capsule_serial: serial
-    });
-    return this.capsuleReducer(response[0]);
-  }
-
-  getCapsulesByIds({ serials }) {
-    return Promise.all(serials.map(serial => this.getCapsuleById({ serial })));
-  }
-
   launchReducer(launch) {
     return {
       id: launch.flight_number || 0,
@@ -89,4 +55,4 @@ class SpaceXAPI extends RESTDataSource {
   }
 }
 
-export default SpaceXAPI;
+export default Launch;
