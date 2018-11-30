@@ -2,7 +2,7 @@
   "name": "spacex-wiki-server",
   "version": "0.0.2-alpha",
   "description": "Backend for the SpaceX wiki app",
-  "main": "server.js",
+  "main": "src/server.js",
   "scripts": {
     "start": "node dist/server.js",
     "build": "babel src --ignore */__tests__ --out-dir dist",

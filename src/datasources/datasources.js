@@ -6,6 +6,6 @@
  *
  */
 
-import SpaceXDataAPI from './SpaceXDataAPI';
+import SpaceXAPI from './spacex-api';
 
-export default SpaceXDataAPI;
+export default SpaceXAPI;

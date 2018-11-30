@@ -39,8 +39,7 @@ const typeDefs = gql`
     type: String
   }
 
-  type Mission {
-    name: String
+  extend type Mission {
     missionPatch(size: PatchSize): String
   }
 

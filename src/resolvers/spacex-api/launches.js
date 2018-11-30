@@ -1,9 +1,9 @@
-import { paginateResults } from '../utils';
+import { paginateResults } from '../../utils';
 
 export default {
   Query: {
     launches: async (_, { pageSize = 20, after }, { dataSources }) => {
-      const allLaunches = await dataSources.spaceXDataAPI.getAllLaunches();
+      const allLaunches = await dataSources.spaceXAPI.getAllLaunches();
       // we want these in reverse chronological order
       allLaunches.reverse();
 
@@ -25,7 +25,7 @@ export default {
       };
     },
     launch: (_, { id }, { dataSources }) =>
-      dataSources.spaceXDataAPI.getLaunchById({ launchId: id })
+      dataSources.spaceXAPI.getLaunchById({ launchId: id })
   },
   Mission: {
     // make sure the default size is 'large' in case user doesn't specify

@@ -12,6 +12,6 @@
  * - info:    Information about the execution state of the operation which should only be used in advanced cases
  */
 
-import spacexdata from './spacexdata';
+import spaceXAPIResolvers from './spacex-api';
 
-export default spacexdata;
+export default spaceXAPIResolvers;
