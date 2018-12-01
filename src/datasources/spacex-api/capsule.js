@@ -12,7 +12,7 @@ class Capsule extends SpaceXAPI {
       status: capsule.status,
       launchDate: capsule.original_launch,
       launchDateUnix: capsule.original_launch_unix,
-      cursor: `${launchDateUnix}`,
+      cursor: `${capsule.original_launch_unix}`,
       missions: capsule.missions,
       landings: capsule.landings,
       type: capsule.type,
