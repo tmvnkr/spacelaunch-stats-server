@@ -2,8 +2,24 @@ import { gql } from 'apollo-server-express';
 
 const typeDefs = gql`
   extend type Query {
-    capsules: [Capsule]!
+    allCapsules(
+      """
+      The number of results to show. Must be >= 1. Default = 20
+      """
+      pageSize: Int
+      """
+      If you add a cursor here, it will only return results _after_ this cursor
+      """
+      after: String
+    ): CapsuleConnection!
+    # capsules(serials: [ID]!): [Capsule]
     capsule(serial: ID!): Capsule
+  }
+
+  type CapsuleConnection {
+    cursor: String!
+    hasMore: Boolean!
+    capsules: [Capsule]!
   }
 
   type Capsule {

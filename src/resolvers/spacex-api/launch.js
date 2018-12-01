@@ -4,7 +4,7 @@ export default {
   Query: {
     launches: async (_, { pageSize = 20, after }, { dataSources }) => {
       const allLaunches = await dataSources.sxLaunch.getAllLaunches();
-      // we want these in reverse chronological order
+      // put launches in reverse chronological order
       allLaunches.reverse();
 
       const launches = paginateResults({
