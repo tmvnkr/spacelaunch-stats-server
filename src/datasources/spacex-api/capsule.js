@@ -12,7 +12,7 @@ class Capsule extends SpaceXAPI {
       status: capsule.status,
       launchDate: capsule.original_launch,
       launchDateUnix: capsule.original_launch_unix,
-      cursor: `${capsule.original_launch_unix}`,
+      cursor: `${launchDateUnix}`,
       missions: capsule.missions,
       landings: capsule.landings,
       type: capsule.type,
@@ -35,7 +35,7 @@ class Capsule extends SpaceXAPI {
     return this.capsuleReducer(response[0]);
   }
 
-  getCapsulesByIds({ serials }) {
+  async getCapsulesByIds({ serials }) {
     return Promise.all(serials.map(serial => this.getCapsuleById({ serial })));
   }
 }

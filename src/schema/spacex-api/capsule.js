@@ -11,28 +11,28 @@ const typeDefs = gql`
       If you add a cursor here, it will only return results _after_ this cursor
       """
       after: String
-    ): CapsuleConnection!
-    # capsules(serials: [ID]!): [Capsule]
-    capsule(serial: ID!): Capsule
+    ): CapsuleConnection
+    capsules(serials: [ID]): [Capsule]
+    capsule(serial: ID): Capsule
   }
 
   type CapsuleConnection {
-    cursor: String!
-    hasMore: Boolean!
-    capsules: [Capsule]!
+    cursor: String
+    hasMore: Boolean
+    capsules: [Capsule]
   }
 
   type Capsule {
-    serial: ID!
-    id: String!
-    status: String!
+    serial: ID
+    id: String
+    status: String
     launchDate: String
     launchDateUnix: Int
     missions: [Mission]
-    landings: Int!
-    type: String!
+    landings: Int
+    type: String
     details: String
-    reuse: Int!
+    reuse: Int
   }
 
   extend type Mission {

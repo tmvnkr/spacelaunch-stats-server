@@ -3,7 +3,6 @@ import SpaceXAPI from './spacex-api';
 class Core extends SpaceXAPI {
   constructor() {
     super();
-    this.baseURL = 'https://api.spacexdata.com/v3/';
   }
 
   coreReducer(core) {

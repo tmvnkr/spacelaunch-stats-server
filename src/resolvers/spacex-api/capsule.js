@@ -24,7 +24,15 @@ export default {
           : false
       };
     },
+
     capsule: (_, { serial }, { dataSources }) =>
-      dataSources.sxCapsule.getCapsuleById({ serial })
+      dataSources.sxCapsule.getCapsuleById({ serial }),
+
+    capsules: async (_, { serials }, { dataSources }) => {
+      const capsules = await dataSources.sxCapsule.getCapsulesByIds({
+        serials
+      });
+      return capsules;
+    }
   }
 };
