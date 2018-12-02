@@ -5,12 +5,14 @@
  * Reducers transform the data into the shape defined by the schema.
  */
 
-import Capsule from './spacex-api/capsule';
 import Launch from './spacex-api/launch';
+import Capsule from './spacex-api/capsule';
+import Core from './spacex-api/core';
 
 const dataSources = () => ({
+  sxLaunch: new Launch(),
   sxCapsule: new Capsule(),
-  sxLaunch: new Launch()
+  sxCore: new Core()
 });
 
 export default dataSources;

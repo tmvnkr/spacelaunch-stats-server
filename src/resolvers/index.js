@@ -14,5 +14,6 @@
 
 import launch from './spacex-api/launch';
 import capsule from './spacex-api/capsule';
+import core from './spacex-api/core';
 
-export default [capsule, launch];
+export default [launch, capsule, core];

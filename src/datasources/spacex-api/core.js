@@ -7,38 +7,39 @@ class Core extends SpaceXAPI {
 
   coreReducer(core) {
     return {
-      core_serial,
-      block,
-      status,
-      original_launch,
-      original_launch_unix,
-      missions,
-      reuse_count,
-      rtls_attempts,
-      rtls_landings,
-      asds_attempts,
-      asds_landings,
-      water_landing,
-      details
+      serial: core.core_serial,
+      block: core.block,
+      status: core.status,
+      launchDate: core.original_launch,
+      launchDateUnix: core.original_launch_unix,
+      cursor: `${core.original_launch_unix}`,
+      missions: core.missions,
+      reuse: core.reuse_count,
+      rtlsAttempts: core.rtls_attempts,
+      rtlsLandings: core.rtls_landings,
+      asdsAttempts: core.asds_attempts,
+      asdsLandings: core.asds_landings,
+      waterLanding: core.water_landing,
+      details: core.details
     };
   }
 
   async getAllCores() {
     const response = await this.get('cores');
     return response && response.length
-      ? response.map(capsule => this.capsuleReducer(capsule))
+      ? response.map(core => this.coreReducer(core))
       : [];
   }
 
-  async getCapsuleById({ serial }) {
+  async getCoreById({ serial }) {
     const response = await this.get('cores', {
-      capsule_serial: serial
+      core_serial: serial
     });
-    return this.capsuleReducer(response[0]);
+    return this.coreReducer(response[0]);
   }
 
-  getCapsulesByIds({ serials }) {
-    return Promise.all(serials.map(serial => this.getCapsuleById({ serial })));
+  getCoresByIds({ serials }) {
+    return Promise.all(serials.map(serial => this.getCoreById({ serial })));
   }
 }
 

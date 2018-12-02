@@ -4,8 +4,9 @@
 
 import { gql } from 'apollo-server-express';
 
-import capsule from './spacex-api/capsule';
 import launch from './spacex-api/launch';
+import capsule from './spacex-api/capsule';
+import core from './spacex-api/core';
 
 const linkSchema = gql`
   type Query {
@@ -25,4 +26,4 @@ const linkSchema = gql`
   }
 `;
 
-export default [linkSchema, capsule, launch];
+export default [linkSchema, launch, capsule, core];
