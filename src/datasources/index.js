@@ -8,11 +8,13 @@
 import Launch from './spacex-api/launch';
 import Capsule from './spacex-api/capsule';
 import Core from './spacex-api/core';
+import Mission from './spacex-api/mission';
 
 const dataSources = () => ({
   sxLaunch: new Launch(),
   sxCapsule: new Capsule(),
-  sxCore: new Core()
+  sxCore: new Core(),
+  sxMission: new Mission()
 });
 
 export default dataSources;

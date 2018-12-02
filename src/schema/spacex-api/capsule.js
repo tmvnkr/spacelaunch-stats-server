@@ -36,7 +36,6 @@ const typeDefs = gql`
   }
 
   extend type Mission {
-    name: String
     flight: Int
   }
 `;

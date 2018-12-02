@@ -4,6 +4,7 @@ class Launch extends SpaceXAPI {
   constructor() {
     super();
   }
+
   launchReducer(launch) {
     return {
       id: launch.flight_number || 0,
