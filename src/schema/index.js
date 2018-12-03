@@ -4,6 +4,7 @@
 
 import { gql } from 'apollo-server-express';
 
+import sxInfo from './spacex-api/spacex-api';
 import launch from './spacex-api/launch';
 import capsule from './spacex-api/capsule';
 import core from './spacex-api/core';
@@ -27,4 +28,4 @@ const linkSchema = gql`
   }
 `;
 
-export default [linkSchema, launch, capsule, core, mission];
+export default [linkSchema, sxInfo, launch, capsule, core, mission];

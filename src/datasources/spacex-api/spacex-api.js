@@ -18,6 +18,40 @@ class SpaceXAPI extends RESTDataSource {
     super();
     this.baseURL = 'https://api.spacexdata.com/v3/';
   }
+
+  infoReducer(info) {
+    return {
+      name: info.name,
+      founder: info.founder,
+      founded: info.founded,
+      employees: info.employees,
+      vehicles: info.vehicles,
+      launchSites: info.launch_sites,
+      testSites: info.test_sites,
+      ceo: info.ceo,
+      cto: info.cto,
+      coo: info.coo,
+      ctoPropulsion: info.cto_propulsion,
+      valuation: info.valuation,
+      headquarters: {
+        address: info.headquarters.address,
+        city: info.headquarters.city,
+        state: info.headquarters.state
+      },
+      links: {
+        website: info.links.website,
+        flickr: info.links.flickr,
+        twitter: info.links.flickr,
+        elonTwitter: info.links.elon_twitter
+      },
+      summary: info.summary
+    };
+  }
+
+  async getInfo() {
+    const response = await this.get('info');
+    return this.infoReducer(response);
+  }
 }
 
 export default SpaceXAPI;

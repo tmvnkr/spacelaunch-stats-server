@@ -12,9 +12,10 @@
  * - info:    Information about the execution state of the operation which should only be used in advanced cases
  */
 
+import sxInfo from './spacex-api/spacex-api';
 import launch from './spacex-api/launch';
 import capsule from './spacex-api/capsule';
 import core from './spacex-api/core';
 import mission from './spacex-api/mission';
 
-export default [launch, capsule, core, mission];
+export default [sxInfo, launch, capsule, core, mission];
