@@ -2,7 +2,7 @@ import { gql } from 'apollo-server-express';
 
 const typeDefs = gql`
   extend type Query {
-    launches(
+    allLaunches(
       """
       The number of results to show. Must be >= 1. Default = 20
       """
@@ -11,25 +11,20 @@ const typeDefs = gql`
       If you add a cursor here, it will only return results _after_ this cursor
       """
       after: String
-    ): LaunchConnection!
-    launch(id: ID!): Launch
+    ): Connection!
+    singleLaunch(id: ID!): Launch
   }
 
-  """
-  Simple wrapper around our list of launches that contains a cursor to the
-  last item in the list. Pass this cursor to the launches query to fetch results
-  after these.
-  """
-  type LaunchConnection {
-    cursor: String!
-    hasMore: Boolean!
+  extend type Connection {
     launches: [Launch]!
   }
 
   type Launch {
     id: ID!
+    name: String!
+
     site: String
-    mission: Mission
+    mission: LaunchMission
     rocket: Rocket
   }
 
@@ -39,7 +34,7 @@ const typeDefs = gql`
     type: String
   }
 
-  extend type Mission {
+  type LaunchMission {
     missionPatch(size: PatchSize): String
   }
 

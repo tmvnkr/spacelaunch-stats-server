@@ -25,11 +25,11 @@ export default {
       };
     },
 
-    capsule: (_, { serial }, { dataSources }) =>
-      dataSources.sxCapsule.getCapsuleById({ serial }),
+    singleCapsule: (_, { serial }, { dataSources }) =>
+      dataSources.sxCapsule.getCapsuleBySerial({ serial }),
 
-    capsules: async (_, { serials }, { dataSources }) => {
-      const capsules = await dataSources.sxCapsule.getCapsulesByIds({
+    multipleCapsules: async (_, { serials }, { dataSources }) => {
+      const capsules = await dataSources.sxCapsule.getCapsulesBySerials({
         serials
       });
       return capsules;

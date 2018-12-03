@@ -13,10 +13,11 @@
 
 import { RESTDataSource } from 'apollo-datasource-rest';
 
-class SpaceXAPI extends RESTDataSource {
+class SpaceX extends RESTDataSource {
   constructor() {
     super();
-    this.baseURL = 'https://api.spacexdata.com/v3/';
+    this.baseURL = process.env.SPACEX_API_V3_URL;
+    this.endpoint = 'info';
   }
 
   infoReducer(info) {
@@ -33,7 +34,7 @@ class SpaceXAPI extends RESTDataSource {
       coo: info.coo,
       ctoPropulsion: info.cto_propulsion,
       valuation: info.valuation,
-      headquarters: {
+      headquarter: {
         address: info.headquarters.address,
         city: info.headquarters.city,
         state: info.headquarters.state
@@ -49,9 +50,9 @@ class SpaceXAPI extends RESTDataSource {
   }
 
   async getInfo() {
-    const response = await this.get('info');
+    const response = await this.get(this.endpoint);
     return this.infoReducer(response);
   }
 }
 
-export default SpaceXAPI;
+export default SpaceX;

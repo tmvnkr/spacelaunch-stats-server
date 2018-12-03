@@ -25,11 +25,11 @@ export default {
       };
     },
 
-    core: (_, { serial }, { dataSources }) =>
-      dataSources.sxCore.getCoreById({ serial }),
+    singleCore: (_, { serial }, { dataSources }) =>
+      dataSources.sxCore.getCoreBySerial({ serial }),
 
-    cores: async (_, { serials }, { dataSources }) => {
-      const cores = await dataSources.sxCore.getCoresByIds({
+    multipleCores: async (_, { serials }, { dataSources }) => {
+      const cores = await dataSources.sxCore.getCoresBySerials({
         serials
       });
       return cores;

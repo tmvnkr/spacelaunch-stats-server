@@ -1,8 +1,10 @@
-import SpaceXAPI from './spacex-api';
+import { RESTDataSource } from 'apollo-datasource-rest';
 
-class Core extends SpaceXAPI {
+class Core extends RESTDataSource {
   constructor() {
     super();
+    this.baseURL = process.env.SPACEX_API_V3_URL;
+    this.endpoint = 'cores';
   }
 
   coreReducer(core) {
@@ -25,21 +27,21 @@ class Core extends SpaceXAPI {
   }
 
   async getAllCores() {
-    const response = await this.get('cores');
+    const response = await this.get(this.endpoint);
     return response && response.length
       ? response.map(core => this.coreReducer(core))
       : [];
   }
 
-  async getCoreById({ serial }) {
-    const response = await this.get('cores', {
+  async getCoreBySerial({ serial }) {
+    const response = await this.get(this.endpoint, {
       core_serial: serial
     });
     return this.coreReducer(response[0]);
   }
 
-  getCoresByIds({ serials }) {
-    return Promise.all(serials.map(serial => this.getCoreById({ serial })));
+  getCoresBySerials({ serials }) {
+    return Promise.all(serials.map(serial => this.getCoreBySerial({ serial })));
   }
 }
 

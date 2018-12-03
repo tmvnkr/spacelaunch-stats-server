@@ -3,17 +3,11 @@ import { gql } from 'apollo-server-express';
 const typeDefs = gql`
   extend type Query {
     allMissions: [Mission]
-    missions(ids: [ID]!): [Mission]
-    mission(id: ID!): Mission
+    singleMission(id: ID!): Mission
+    multipleMissions(ids: [ID]!): [Mission]
   }
 
-  type MissionConnection {
-    cursor: String!
-    hasMore: Boolean!
-    missions: [Mission]!
-  }
-
-  extend type Mission {
+  type Mission {
     id: ID!
     name: String!
     manufacturers: [String]

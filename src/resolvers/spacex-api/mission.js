@@ -3,10 +3,10 @@ export default {
     allMissions: (_, __, { dataSources }) =>
       dataSources.sxMission.getAllMissions(),
 
-    mission: (_, { id }, { dataSources }) =>
+    singleMission: (_, { id }, { dataSources }) =>
       dataSources.sxMission.getMissionById({ id }),
 
-    missions: async (_, { ids }, { dataSources }) => {
+    multipleMissions: async (_, { ids }, { dataSources }) => {
       const missions = await dataSources.sxMission.getMissionsByIds({
         ids
       });

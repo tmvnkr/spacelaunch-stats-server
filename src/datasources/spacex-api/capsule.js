@@ -1,8 +1,10 @@
-import SpaceXAPI from './spacex-api';
+import { RESTDataSource } from 'apollo-datasource-rest';
 
-class Capsule extends SpaceXAPI {
+class Capsule extends RESTDataSource {
   constructor() {
     super();
+    this.baseURL = process.env.SPACEX_API_V3_URL;
+    this.endpoint = 'capsules';
   }
 
   capsuleReducer(capsule) {
@@ -22,21 +24,23 @@ class Capsule extends SpaceXAPI {
   }
 
   async getAllCapsules() {
-    const response = await this.get('capsules');
+    const response = await this.get(this.endpoint);
     return response && response.length
       ? response.map(capsule => this.capsuleReducer(capsule))
       : [];
   }
 
-  async getCapsuleById({ serial }) {
-    const response = await this.get('capsules', {
+  async getCapsuleBySerial({ serial }) {
+    const response = await this.get(this.endpoint, {
       capsule_serial: serial
     });
     return this.capsuleReducer(response[0]);
   }
 
-  async getCapsulesByIds({ serials }) {
-    return Promise.all(serials.map(serial => this.getCapsuleById({ serial })));
+  async getCapsulesBySerials({ serials }) {
+    return Promise.all(
+      serials.map(serial => this.getCapsuleBySerial({ serial }))
+    );
   }
 }
 

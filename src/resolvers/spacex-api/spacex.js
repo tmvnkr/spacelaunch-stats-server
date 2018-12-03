@@ -13,6 +13,6 @@
 
 export default {
   Query: {
-    information: (_, __, { dataSources }) => dataSources.spaceXAPI.getInfo()
+    information: (_, __, { dataSources }) => dataSources.sxInfo.getInfo()
   }
 };

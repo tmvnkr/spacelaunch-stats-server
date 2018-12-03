@@ -1,8 +1,10 @@
-import SpaceXAPI from './spacex-api';
+import { RESTDataSource } from 'apollo-datasource-rest';
 
-class Launch extends SpaceXAPI {
+class Launch extends RESTDataSource {
   constructor() {
     super();
+    this.baseURL = process.env.SPACEX_API_V3_URL;
+    this.endpoint = 'launches';
   }
 
   launchReducer(launch) {
@@ -24,14 +26,15 @@ class Launch extends SpaceXAPI {
   }
 
   async getAllLaunches() {
-    const response = await this.get('launches');
+    const response = await this.get(this.endpoint);
     return response && response.length
       ? response.map(launch => this.launchReducer(launch))
       : [];
   }
 
   async getLaunchById({ launchId }) {
-    const response = await this.get('launches', { flight_number: launchId });
+    const response = await this.get(this.endpoint, { flight_number: launchId });
+    console.log(this.endpoint, launchId);
     return this.launchReducer(response[0]);
   }
 

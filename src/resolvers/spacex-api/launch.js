@@ -2,7 +2,7 @@ import { paginateResults } from '../../utils';
 
 export default {
   Query: {
-    launches: async (_, { pageSize = 20, after }, { dataSources }) => {
+    allLaunches: async (_, { pageSize = 20, after }, { dataSources }) => {
       const allLaunches = await dataSources.sxLaunch.getAllLaunches();
       // put launches in reverse chronological order
       allLaunches.reverse();
@@ -24,10 +24,10 @@ export default {
           : false
       };
     },
-    launch: (_, { id }, { dataSources }) =>
+    singleLaunch: (_, { id }, { dataSources }) =>
       dataSources.sxLaunch.getLaunchById({ launchId: id })
   },
-  Mission: {
+  LaunchMission: {
     // make sure the default size is 'large' in case user doesn't specify
     missionPatch: (mission, { size } = { size: 'LARGE' }) => {
       return size === 'SMALL'

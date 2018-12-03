@@ -8,7 +8,6 @@ import path from 'path';
 import typeDefs from './schema';
 import resolvers from './resolvers';
 import dataSources from './datasources';
-// import Capsule from './datasources/spacex-api/capsule';
 
 // Make .env accesible in this file
 require('dotenv').config();
