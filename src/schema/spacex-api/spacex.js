@@ -32,7 +32,7 @@ const typeDefs = gql`
     ctoPropulsion: String!
     valuation: Float!
     headquarter: Headquarter!
-    links: InfoLink!
+    links: InfoLinks!
     summary: String!
   }
 
@@ -42,7 +42,7 @@ const typeDefs = gql`
     state: String!
   }
 
-  type InfoLink {
+  type InfoLinks {
     website: String!
     flickr: String!
     twitter: String!

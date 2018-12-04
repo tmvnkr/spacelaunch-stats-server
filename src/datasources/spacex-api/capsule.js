@@ -10,11 +10,11 @@ class Capsule extends RESTDataSource {
   capsuleReducer(capsule) {
     return {
       serial: capsule.capsule_serial || 'N/A',
+      cursor: `${capsule.original_launch_unix}`,
       id: capsule.capsule_id,
       status: capsule.status,
       launchDate: capsule.original_launch,
       launchDateUnix: capsule.original_launch_unix,
-      cursor: `${capsule.original_launch_unix}`,
       missions: capsule.missions,
       landings: capsule.landings,
       type: capsule.type,

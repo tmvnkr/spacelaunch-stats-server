@@ -10,12 +10,14 @@ class Core extends RESTDataSource {
   coreReducer(core) {
     return {
       serial: core.core_serial,
+      cursor: `${core.original_launch_unix}`,
       block: core.block,
       status: core.status,
       launchDate: core.original_launch,
       launchDateUnix: core.original_launch_unix,
-      cursor: `${core.original_launch_unix}`,
       missions: core.missions,
+      name: core.missions.name,
+      flight: core.missions.flight,
       reuse: core.reuse_count,
       rtlsAttempts: core.rtls_attempts,
       rtlsLandings: core.rtls_landings,

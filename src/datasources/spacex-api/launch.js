@@ -11,17 +11,55 @@ class Launch extends RESTDataSource {
     return {
       id: launch.flight_number || 0,
       cursor: `${launch.launch_date_unix}`,
-      site: launch.launch_site && launch.launch_site.site_name,
-      mission: {
-        name: launch.mission_name,
-        missionPatchSmall: launch.links.mission_patch_small,
-        missionPatchLarge: launch.links.mission_patch
-      },
+      name: launch.mission_name,
+      missionId: launch.mission_id,
+      launchYear: launch.launch_year,
+      launchDateUnix: launch.launch_date_unix,
+      launchDateUTC: launch.launch_date_utc,
+      launchDateLocal: launch.launch_date_local,
+      tentative: launch.is_tentative,
+      tentativeMaxPrecision: launch.tentative_max_precision,
+      toBeDetermined: launch.tbd,
       rocket: {
         id: launch.rocket.rocket_id,
         name: launch.rocket.rocket_name,
-        type: launch.rocket.rocket_type
-      }
+        type: launch.rocket.rocket_type,
+        firstStage: {
+          cores: launch.rocket.first_stage.cores
+        },
+        secondStage: {
+          block: launch.rocket.second_stage.block,
+          payloads: launch.rocket.second_stage.payloads
+        },
+        fairings: launch.rocket.fairings
+      },
+      ships: launch.ships,
+      telemetry: {
+        flightClub: launch.telemetry.flight_club
+      },
+      launchSite: {
+        id: launch.launch_site.site_id,
+        name: launch.launch_site.site_name,
+        fullName: launch.launch_site.site_name_long
+      },
+      launchSuccess: launch.launch_success,
+      links: {
+        missionPatchSmall: launch.links.mission_patch_small,
+        missionPatchLarge: launch.links.mission_patch,
+        redditCampaign: launch.links.reddit_campaign,
+        redditLaunch: launch.links.reddit_launch,
+        redditRecovery: launch.links.reddit_recovery,
+        redditMedia: launch.links.reddit_media,
+        presskit: launch.links.presskit,
+        article: launch.links.article_link,
+        wikipedia: launch.links.wikipedia,
+        video: launch.links.video_link,
+        flickr: launch.links.flickr_images
+      },
+      details: launch.details,
+      upcoming: launch.upcoming,
+      staticFireDateUTC: launch.static_fire_date_utc,
+      staticFireDateUnix: launch.static_fire_date_unix
     };
   }
 
@@ -34,7 +72,6 @@ class Launch extends RESTDataSource {
 
   async getLaunchById({ launchId }) {
     const response = await this.get(this.endpoint, { flight_number: launchId });
-    console.log(this.endpoint, launchId);
     return this.launchReducer(response[0]);
   }
 

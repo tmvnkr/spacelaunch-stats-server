@@ -11,12 +11,14 @@ const typeDefs = gql`
       If you add a cursor here, it will only return results _after_ this cursor
       """
       after: String
-    ): Connection!
+    ): CapsuleConnection!
     singleCapsule(serial: ID!): Capsule
     multipleCapsules(serials: [ID]!): [Capsule]
   }
 
-  extend type Connection {
+  type CapsuleConnection {
+    cursor: String!
+    hasMore: Boolean!
     capsules: [Capsule]!
   }
 

@@ -11,12 +11,14 @@ const typeDefs = gql`
       If you add a cursor here, it will only return results _after_ this cursor
       """
       after: String
-    ): Connection!
+    ): CoreConnection!
     singleCore(serial: ID!): Core
     multipleCores(serials: [ID]!): [Core]
   }
 
-  extend type Connection {
+  type CoreConnection {
+    cursor: String!
+    hasMore: Boolean!
     cores: [Core]!
   }
 
@@ -30,7 +32,7 @@ const typeDefs = gql`
     status: String!
     launchDate: String
     launchDateUnix: Int
-    missions: [Mission]
+    missions: [CoreMission]
     reuse: Int!
     rtlsAttempts: Int!
     rtlsLandings: Int!
@@ -38,6 +40,11 @@ const typeDefs = gql`
     asdsLandings: Int!
     waterLanding: Boolean!
     details: String
+  }
+
+  type CoreMission {
+    name: String
+    flight: Int
   }
 `;
 

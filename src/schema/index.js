@@ -22,11 +22,6 @@ const linkSchema = gql`
   type Subscription {
     _: Boolean
   }
-
-  type Connection {
-    cursor: String!
-    hasMore: Boolean!
-  }
 `;
 
 export default [linkSchema, sxInfo, launch, capsule, core, mission];
