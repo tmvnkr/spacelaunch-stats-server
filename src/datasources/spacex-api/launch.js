@@ -137,6 +137,16 @@ class Launch extends RESTDataSource {
     return this.launchReducer(response[0]);
   }
 
+  async getLatestLaunch() {
+    const response = await this.get(this.endpoint + 'latest');
+    return this.launchReducer(response);
+  }
+
+  async getNextLaunch() {
+    const response = await this.get(this.endpoint + 'next');
+    return this.launchReducer(response);
+  }
+
   getLaunchesByIds({ launchIds }) {
     return Promise.all(
       launchIds.map(launchId => this.getLaunchById({ launchId }))

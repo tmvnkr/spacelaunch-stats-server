@@ -4,7 +4,7 @@ export default {
   Query: {
     allLaunches: async (
       _parent,
-      { get = 'ALL', order = 'DEFAULT', pageSize = 20, after },
+      { get = 'ALL', order = 'DEFAULT', pageSize = 10, after },
       { dataSources }
     ) => {
       get === 'ALL' ? (get = '') : get;
@@ -35,7 +35,11 @@ export default {
       };
     },
     singleLaunch: (_parent, { id }, { dataSources }) =>
-      dataSources.sxLaunch.getLaunchById({ launchId: id })
+      dataSources.sxLaunch.getLaunchById({ launchId: id }),
+    latestLaunch: (_parent, _args, { dataSources }) =>
+      dataSources.sxLaunch.getLatestLaunch(),
+    nextLaunch: (_parent, _args, { dataSources }) =>
+      dataSources.sxLaunch.getNextLaunch()
   },
   LaunchLinks: {
     // makes sure the default size is 'large' in case user doesn't specify
