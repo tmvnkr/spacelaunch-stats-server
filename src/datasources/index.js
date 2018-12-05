@@ -11,12 +11,17 @@ import Capsule from './spacex-api/capsule';
 import Core from './spacex-api/core';
 import Mission from './spacex-api/mission';
 
+import Forecast from './weather-api/forecast';
+
 const dataSources = () => ({
+  //SpaceX API
   sxInfo: new SpaceX(),
   sxLaunch: new Launch(),
   sxCapsule: new Capsule(),
   sxCore: new Core(),
-  sxMission: new Mission()
+  sxMission: new Mission(),
+  //Open Weather Map API
+  owmForecast: new Forecast()
 });
 
 export default dataSources;

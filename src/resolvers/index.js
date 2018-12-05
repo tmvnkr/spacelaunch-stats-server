@@ -18,4 +18,6 @@ import capsule from './spacex-api/capsule';
 import core from './spacex-api/core';
 import mission from './spacex-api/mission';
 
-export default [sxInfo, launch, capsule, core, mission];
+import forecast from './weather-api/forecast';
+
+export default [sxInfo, launch, capsule, core, mission, forecast];
