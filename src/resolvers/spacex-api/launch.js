@@ -39,7 +39,11 @@ export default {
     latestLaunch: (_parent, _args, { dataSources }) =>
       dataSources.sxLaunch.getLatestLaunch(),
     nextLaunch: (_parent, _args, { dataSources }) =>
-      dataSources.sxLaunch.getNextLaunch()
+      dataSources.sxLaunch.getNextLaunch(),
+    multipleLaunches: async (_parent, { launchIds }, { dataSources }) => {
+      if (!launchIds.length) return [];
+      return (await dataSources.sxLaunch.getLaunchesByIds({ launchIds })) || [];
+    }
   },
   LaunchLinks: {
     // makes sure the default size is 'large' in case user doesn't specify

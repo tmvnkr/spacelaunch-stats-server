@@ -15,9 +15,7 @@ class Core extends RESTDataSource {
       status: core.status,
       launchDate: core.original_launch,
       launchDateUnix: core.original_launch_unix,
-      missions: core.missions,
-      name: core.missions.name,
-      flight: core.missions.flight,
+      missions: core.missions.map(mission => this.missionReducer(mission)),
       reuse: core.reuse_count,
       rtlsAttempts: core.rtls_attempts,
       rtlsLandings: core.rtls_landings,
@@ -25,6 +23,13 @@ class Core extends RESTDataSource {
       asdsLandings: core.asds_landings,
       waterLanding: core.water_landing,
       details: core.details
+    };
+  }
+
+  missionReducer(mission) {
+    return {
+      name: mission.name,
+      flight: mission.flight
     };
   }
 

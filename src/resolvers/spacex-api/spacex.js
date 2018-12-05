@@ -13,6 +13,7 @@
 
 export default {
   Query: {
-    information: (_, __, { dataSources }) => dataSources.sxInfo.getInfo()
+    information: (_parent, _args, { dataSources }) =>
+      dataSources.sxInfo.getInfo()
   }
 };

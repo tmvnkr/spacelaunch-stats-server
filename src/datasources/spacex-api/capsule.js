@@ -15,11 +15,18 @@ class Capsule extends RESTDataSource {
       status: capsule.status,
       launchDate: capsule.original_launch,
       launchDateUnix: capsule.original_launch_unix,
-      missions: capsule.missions,
+      missions: capsule.missions.map(mission => this.missionReducer(mission)),
       landings: capsule.landings,
       type: capsule.type,
       details: capsule.details,
       reuse: capsule.reuse_count
+    };
+  }
+
+  missionReducer(mission) {
+    return {
+      name: mission.name,
+      flight: mission.flight
     };
   }
 
@@ -37,9 +44,9 @@ class Capsule extends RESTDataSource {
     return this.capsuleReducer(response[0]);
   }
 
-  async getCapsulesBySerials({ serials }) {
+  async getCapsulesBySerials({ capsuleSerials }) {
     return Promise.all(
-      serials.map(serial => this.getCapsuleBySerial({ serial }))
+      capsuleSerials.map(serial => this.getCapsuleBySerial({ serial }))
     );
   }
 }

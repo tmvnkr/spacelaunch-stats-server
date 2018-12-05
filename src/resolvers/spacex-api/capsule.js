@@ -2,7 +2,7 @@ import { paginateResults } from '../../utils';
 
 export default {
   Query: {
-    allCapsules: async (_, { pageSize = 20, after }, { dataSources }) => {
+    allCapsules: async (_parent, { pageSize = 20, after }, { dataSources }) => {
       const allCapsules = await dataSources.sxCapsule.getAllCapsules();
       // put capsules in reverse chronological order
       allCapsules.reverse();
@@ -25,14 +25,16 @@ export default {
       };
     },
 
-    singleCapsule: (_, { serial }, { dataSources }) =>
+    singleCapsule: (_parent, { serial }, { dataSources }) =>
       dataSources.sxCapsule.getCapsuleBySerial({ serial }),
 
-    multipleCapsules: async (_, { serials }, { dataSources }) => {
-      const capsules = await dataSources.sxCapsule.getCapsulesBySerials({
-        serials
-      });
-      return capsules;
+    multipleCapsules: async (_parent, { capsuleSerials }, { dataSources }) => {
+      if (!capsuleSerials.length) return [];
+      return (
+        (await dataSources.sxCapsule.getCapsulesBySerials({
+          seriacapsuleSerialsls
+        })) || []
+      );
     }
   }
 };

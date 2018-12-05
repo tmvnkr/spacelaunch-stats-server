@@ -13,7 +13,7 @@ const typeDefs = gql`
       after: String
     ): CoreConnection!
     singleCore(serial: ID!): Core
-    multipleCores(serials: [ID]!): [Core]
+    multipleCores(coreSerials: [ID]!): [Core]
   }
 
   type CoreConnection {

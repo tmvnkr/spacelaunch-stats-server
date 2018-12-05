@@ -13,7 +13,7 @@ const typeDefs = gql`
       after: String
     ): CapsuleConnection!
     singleCapsule(serial: ID!): Capsule
-    multipleCapsules(serials: [ID]!): [Capsule]
+    multipleCapsules(capsuleSerials: [ID]!): [Capsule]
   }
 
   type CapsuleConnection {

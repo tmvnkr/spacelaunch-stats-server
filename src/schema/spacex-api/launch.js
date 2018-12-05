@@ -14,9 +14,10 @@ const typeDefs = gql`
       """
       after: String
     ): LaunchConnection!
-    singleLaunch(id: ID!): Launch
-    latestLaunch: Launch
-    nextLaunch: Launch
+    singleLaunch(id: ID!): Launch!
+    latestLaunch: Launch!
+    nextLaunch: Launch!
+    multipleLaunches(launchIds: [ID!]!): [Launch!]!
   }
 
   type LaunchConnection {

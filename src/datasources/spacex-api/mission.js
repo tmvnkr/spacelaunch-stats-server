@@ -34,8 +34,8 @@ class Mission extends RESTDataSource {
     return this.missionReducer(response[0]);
   }
 
-  async getMissionsByIds({ ids }) {
-    return Promise.all(ids.map(id => this.getMissionById({ id })));
+  async getMissionsByIds({ missionIds }) {
+    return Promise.all(missionIds.map(id => this.getMissionById({ id })));
   }
 }
 

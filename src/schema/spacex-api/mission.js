@@ -4,7 +4,7 @@ const typeDefs = gql`
   extend type Query {
     allMissions: [Mission]
     singleMission(id: ID!): Mission
-    multipleMissions(ids: [ID]!): [Mission]
+    multipleMissions(missionIds: [ID]!): [Mission]
   }
 
   type Mission {

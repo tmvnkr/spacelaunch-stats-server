@@ -2,7 +2,7 @@ import { paginateResults } from '../../utils';
 
 export default {
   Query: {
-    allCores: async (_, { pageSize = 20, after }, { dataSources }) => {
+    allCores: async (_parent, { pageSize = 20, after }, { dataSources }) => {
       const allCores = await dataSources.sxCore.getAllCores();
       // put cores in reverse chronological order
       allCores.reverse();
@@ -25,14 +25,14 @@ export default {
       };
     },
 
-    singleCore: (_, { serial }, { dataSources }) =>
+    singleCore: (_parent, { serial }, { dataSources }) =>
       dataSources.sxCore.getCoreBySerial({ serial }),
 
-    multipleCores: async (_, { serials }, { dataSources }) => {
-      const cores = await dataSources.sxCore.getCoresBySerials({
-        serials
-      });
-      return cores;
+    multipleCores: async (_parent, { coreSerials }, { dataSources }) => {
+      if (!coreSerials.length) return [];
+      return (
+        (await dataSources.sxCore.getCoresBySerials({ coreSerials })) || []
+      );
     }
   }
 };
