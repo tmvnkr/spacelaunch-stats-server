@@ -2,10 +2,20 @@ import { paginateResults } from '../../utils';
 
 export default {
   Query: {
-    allLaunches: async (_, { pageSize = 20, after }, { dataSources }) => {
-      const allLaunches = await dataSources.sxLaunch.getAllLaunches();
-      // put launches in reverse chronological order
-      allLaunches.reverse();
+    allLaunches: async (
+      _parent,
+      { get = 'ALL', order = 'DEFAULT', pageSize = 20, after },
+      { dataSources }
+    ) => {
+      get === 'ALL' ? (get = '') : get;
+      const allLaunches = await dataSources.sxLaunch.getAllLaunches(get);
+      // put launches in reverse chronological order, the default order for UPCOMING is
+      // ASC and the DEFAULT order for PAST and ALL is DESC
+      get !== 'UPCOMING' && order === 'DEFAULT'
+        ? allLaunches.reverse()
+        : order === 'DESC'
+        ? allLaunches.reverse()
+        : null;
 
       const launches = paginateResults({
         after,
@@ -24,11 +34,11 @@ export default {
           : false
       };
     },
-    singleLaunch: (_, { id }, { dataSources }) =>
+    singleLaunch: (_parent, { id }, { dataSources }) =>
       dataSources.sxLaunch.getLaunchById({ launchId: id })
   },
   LaunchLinks: {
-    // make sure the default size is 'large' in case user doesn't specify
+    // makes sure the default size is 'large' in case user doesn't specify
     missionPatch: (links, { size } = { size: 'LARGE' }) => {
       return size === 'SMALL'
         ? links.missionPatchSmall

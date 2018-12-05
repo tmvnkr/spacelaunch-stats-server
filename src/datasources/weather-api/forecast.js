@@ -5,7 +5,7 @@ class Forecast extends RESTDataSource {
     super();
     this.baseURL = process.env.OPEN_WEATHER_MAP_API;
     this.apiKey = process.env.OPEN_WEATHER_MAP_API_KEY;
-    this.endpoint = 'forecast?';
+    this.endpoint = 'forecast';
   }
 
   responseReducer(response) {
@@ -25,10 +25,10 @@ class Forecast extends RESTDataSource {
   }
 
   forecastReducer(forecast) {
-    const getRain = JSON.stringify(forecast.rain);
-    const getSnow = JSON.stringify(forecast.snow);
     let rain;
     let snow;
+    const getRain = JSON.stringify(forecast.rain);
+    const getSnow = JSON.stringify(forecast.snow);
     !getRain ? (rain = 0) : (rain = Number(getRain.slice(6, -1)));
     !getSnow ? (snow = 0) : (snow = Number(getSnow.slice(6, -1)));
     return {
@@ -56,7 +56,7 @@ class Forecast extends RESTDataSource {
 
   async getForecastByLatLon(latitude, longitude) {
     const response = await this.get(
-      `${this.endpoint}lat=${latitude}&lon=${longitude}&APPID=${this.apiKey}`
+      `${this.endpoint}?lat=${latitude}&lon=${longitude}&APPID=${this.apiKey}`
     );
     this.responseReducer(response);
     return response.cod === '200'
@@ -68,7 +68,7 @@ class Forecast extends RESTDataSource {
 
   async getResponseInformation(latitude, longitude) {
     const response = await this.get(
-      `${this.endpoint}lat=${latitude}&lon=${longitude}&APPID=${this.apiKey}`
+      `${this.endpoint}?lat=${latitude}&lon=${longitude}&APPID=${this.apiKey}`
     );
     return this.responseReducer(response);
   }

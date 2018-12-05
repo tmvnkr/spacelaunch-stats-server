@@ -3,6 +3,8 @@ import { gql } from 'apollo-server-express';
 const typeDefs = gql`
   extend type Query {
     allLaunches(
+      get: GetLaunches
+      order: Order
       """
       The number of results to show. Must be >= 1. Default = 20
       """
@@ -63,63 +65,55 @@ const typeDefs = gql`
   }
 
   type Fairings {
-    # Needs rewriting(?) once found out how to reduce properly
-    # Should go from underschore to lower camel case
     reused: Boolean
-    recovery_attempt: Boolean
+    recoveryAttempt: Boolean
     recovered: Boolean
     ship: String
   }
 
   type LaunchCore {
-    # Needs rewriting(?) once found out how to reduce properly
-    # Should go from underschore to lower camel case
-    core_serial: String
+    serial: ID
     flight: Int
     block: Int
     gridfins: Boolean
     legs: Boolean
     reused: Boolean
-    land_success: Boolean
-    landing_intent: Boolean
-    landing_type: String
-    landing_vehicle: String
+    landSuccess: Boolean
+    landingIntent: Boolean
+    landingType: String
+    landingVehicle: String
   }
 
   type LaunchPayload {
-    # Needs rewriting(?) once found out how to reduce properly
-    # Should go from underschore to lower camel case
-    payload_id: String
-    norad_id: [Int]
+    id: ID
+    noradId: [Int]
     reused: Boolean
     customers: [String]
     nationality: String
     manufacturer: String
-    payload_type: String
-    payload_mass_kg: Float
-    payload_mass_lbs: Float
+    type: String
+    massKg: Float
+    massLbs: Float
     orbit: String
-    orbit_params: OrbitParams
+    orbitParams: OrbitParams
   }
 
   type OrbitParams {
-    # Needs rewriting(?) once found out how to reduce properly
-    # Should go from underschore to lower camel case
-    reference_system: String
+    referenceSystem: String
     regime: String
     longitude: Float
-    semi_major_axis_km: Float
+    SemiMajorAxisKm: Float
     eccentricity: Float
-    periapsis_km: Float
-    apoapsis_km: Float
-    inclination_deg: Float
-    period_min: Float
-    lifespan_years: Int
+    periapsisKm: Float
+    apoapsisKm: Float
+    inclinationDeg: Float
+    periodMin: Float
+    lifespanYears: Int
     epoch: String
-    mean_motion: Float
+    meanMotion: Float
     raan: Float
-    arg_of_pericenter: Float
-    mean_anomaly: Float
+    argOfPericenter: Float
+    meanAnomaly: Float
   }
 
   type Telemetry {
@@ -148,6 +142,18 @@ const typeDefs = gql`
   enum PatchSize {
     SMALL
     LARGE
+  }
+
+  enum GetLaunches {
+    ALL
+    UPCOMING
+    PAST
+  }
+
+  enum Order {
+    DEFAULT
+    DESC
+    ASC
   }
 `;
 

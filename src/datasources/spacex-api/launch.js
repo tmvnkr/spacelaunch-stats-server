@@ -4,7 +4,7 @@ class Launch extends RESTDataSource {
   constructor() {
     super();
     this.baseURL = process.env.SPACEX_API_V3_URL;
-    this.endpoint = 'launches';
+    this.endpoint = 'launches/';
   }
 
   launchReducer(launch) {
@@ -25,13 +25,17 @@ class Launch extends RESTDataSource {
         name: launch.rocket.rocket_name,
         type: launch.rocket.rocket_type,
         firstStage: {
-          cores: launch.rocket.first_stage.cores
+          cores: launch.rocket.first_stage.cores.map(core =>
+            this.coreReducer(core)
+          )
         },
         secondStage: {
           block: launch.rocket.second_stage.block,
-          payloads: launch.rocket.second_stage.payloads
+          payloads: launch.rocket.second_stage.payloads.map(payload =>
+            this.payloadReducer(payload)
+          )
         },
-        fairings: launch.rocket.fairings
+        fairings: this.fairingsReducer(launch.rocket.fairings)
       },
       ships: launch.ships,
       telemetry: {
@@ -63,8 +67,66 @@ class Launch extends RESTDataSource {
     };
   }
 
-  async getAllLaunches() {
-    const response = await this.get(this.endpoint);
+  coreReducer(core) {
+    return {
+      serial: core.core_serial,
+      flight: core.flight,
+      block: core.block,
+      gridfinds: core.gridfinds,
+      legs: core.legs,
+      reused: core.reused,
+      landSuccess: core.land_success,
+      landingIntent: core.landing_intent,
+      landingType: core.landing_type,
+      landingVehicle: core.landing_vehicle
+    };
+  }
+
+  payloadReducer(payload) {
+    return {
+      id: payload.payload_id,
+      noradId: payload.norad_id,
+      reused: payload.reused,
+      customers: payload.customers,
+      nationality: payload.nationality,
+      manufacturer: payload.manufacturer,
+      type: payload.payload_type,
+      massKg: payload.payload_mass_kg,
+      massLbs: payload.payload_mass_lbs,
+      orbit: payload.orbit,
+      orbitParams: {
+        referenceSystem: payload.orbit_params.reference_system,
+        regime: payload.orbit_params.regime,
+        longitude: payload.orbit_params.longitude,
+        SemiMajorAxisKm: payload.orbit_params.semi_major_axis_km,
+        eccentricity: payload.orbit_params.eccentricity,
+        periapsisKm: payload.orbit_params.periapsis_km,
+        apoapsisKm: payload.orbit_params.apoapsis_km,
+        inclinationDeg: payload.orbit_params.inclination_deg,
+        periodMin: payload.orbit_params.period_min,
+        lifespanYears: payload.orbit_params.lifespan_years,
+        epoch: payload.orbit_params.epoch,
+        meanMotion: payload.orbit_params.mean_motion,
+        raan: payload.orbit_params.raan,
+        argOfPericenter: payload.orbit_params.arg_of_pericenter,
+        meanAnomaly: payload.orbit_params.mean_anomaly
+      }
+    };
+  }
+
+  fairingsReducer(fairings) {
+    return !fairings === null
+      ? {
+          reused: fairings.reused,
+          recoveryAttempt: fairings.recovery_attempt,
+          recovered: fairings.recovered,
+          ship: fairings.ship
+        }
+      : null;
+  }
+
+  async getAllLaunches(get) {
+    const response = await this.get(this.endpoint + get);
     return response && response.length
       ? response.map(launch => this.launchReducer(launch))
       : [];
