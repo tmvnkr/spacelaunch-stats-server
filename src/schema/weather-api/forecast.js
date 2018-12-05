@@ -2,14 +2,8 @@ import { gql } from 'apollo-server-express';
 
 const typeDefs = gql`
   extend type Query {
-    forecasts: [Forecast]
-    responseInfo: ForecastResponseInfo
-  }
-
-  type ForecastResponseInfo {
-    cod: ID
-    message: Float
-    count: Int
+    forecasts(lat: Float, lon: Float): [Forecast]
+    forecastResponseInfo(lat: Float, lon: Float): ForecastResponseInfo
   }
 
   type Forecast {
@@ -22,14 +16,30 @@ const typeDefs = gql`
     windDegree: Float
     rain: Float
     snow: Float
-    description: [ForecastDescription]
+    weather: [WeatherDescription]
   }
 
-  type ForecastDescription {
+  type WeatherDescription {
     id: Int
     main: String
     description: String
     icon: String
+  }
+
+  type ForecastResponseInfo {
+    cod: ID
+    message: Float
+    count: Int
+    city: ForecastCity
+  }
+
+  type ForecastCity {
+    id: ID
+    name: String
+    latitude: Float
+    longitude: Float
+    country: String
+    population: Int
   }
 `;
 

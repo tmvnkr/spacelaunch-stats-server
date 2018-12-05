@@ -12,7 +12,15 @@ class Forecast extends RESTDataSource {
     return {
       cod: response.cod,
       message: response.message,
-      list: response.list
+      list: response.list,
+      city: {
+        id: response.city.id,
+        name: response.city.name,
+        latitude: response.city.coord.lat,
+        longitude: response.city.coord.lon,
+        country: response.city.country,
+        population: response.city.population
+      }
     };
   }
 
@@ -31,8 +39,18 @@ class Forecast extends RESTDataSource {
       clouds: forecast.clouds.all,
       windSpeed: forecast.wind.speed,
       windDegree: forecast.wind.deg,
+      weather: forecast.weather.map(weather => this.weatherReducer(weather)),
       rain,
       snow
+    };
+  }
+
+  weatherReducer(weather) {
+    return {
+      id: weather.id,
+      main: weather.main,
+      description: weather.description,
+      icon: weather.icon
     };
   }
 
@@ -41,12 +59,18 @@ class Forecast extends RESTDataSource {
       `${this.endpoint}lat=${latitude}&lon=${longitude}&APPID=${this.apiKey}`
     );
     this.responseReducer(response);
-    console.log(response.cod);
     return response.cod === '200'
       ? response.list && response.list.length
         ? response.list.map(forecast => this.forecastReducer(forecast))
         : []
       : [];
+  }
+
+  async getResponseInformation(latitude, longitude) {
+    const response = await this.get(
+      `${this.endpoint}lat=${latitude}&lon=${longitude}&APPID=${this.apiKey}`
+    );
+    return this.responseReducer(response);
   }
 }
 

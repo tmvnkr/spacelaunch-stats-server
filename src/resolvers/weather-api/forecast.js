@@ -1,6 +1,8 @@
 export default {
   Query: {
-    forecasts: (_, __, { dataSources }) =>
-      dataSources.owmForecast.getForecastByLatLon(28.56185, -80.57736)
+    forecasts: (_, { lat, lon }, { dataSources }) =>
+      dataSources.owmForecast.getForecastByLatLon(lat, lon),
+    forecastResponseInfo: (_, { lat, lon }, { dataSources }) =>
+      dataSources.owmForecast.getResponseInformation(lat, lon)
   }
 };
