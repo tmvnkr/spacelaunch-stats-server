@@ -17,7 +17,8 @@ import launch from './spacex-api/launch';
 import capsule from './spacex-api/capsule';
 import core from './spacex-api/core';
 import mission from './spacex-api/mission';
+import launchpad from './spacex-api/launchpad';
 
 import forecast from './weather-api/forecast';
 
-export default [sxInfo, launch, capsule, core, mission, forecast];
+export default [sxInfo, launch, capsule, core, mission, launchpad, forecast];

@@ -10,6 +10,7 @@ import Launch from './spacex-api/launch';
 import Capsule from './spacex-api/capsule';
 import Core from './spacex-api/core';
 import Mission from './spacex-api/mission';
+import Launchpad from './spacex-api/launchpad';
 
 import Forecast from './weather-api/forecast';
 
@@ -20,6 +21,7 @@ const dataSources = () => ({
   sxCapsule: new Capsule(),
   sxCore: new Core(),
   sxMission: new Mission(),
+  sxLaunchpad: new Launchpad(),
   //Open Weather Map API
   owmForecast: new Forecast()
 });
