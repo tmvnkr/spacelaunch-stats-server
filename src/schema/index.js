@@ -25,6 +25,10 @@ const linkSchema = gql`
   type Subscription {
     _: Boolean
   }
+
+  type Forecast {
+    _: Boolean
+  }
 `;
 
 export default [

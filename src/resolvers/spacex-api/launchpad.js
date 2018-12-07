@@ -1,10 +1,14 @@
 export default {
   Query: {
-    allLaunchpads: (_parent, _args, { dataSources }) =>
-      dataSources.sxLaunchpad.getAllLaunchpads(),
+    allLaunchpads: async (_parent, _args, { dataSources }) => {
+      const launchpads = await dataSources.sxLaunchpad.getAllLaunchpads();
+      return launchpads;
+    },
 
-    singleLaunchpad: (_parent, { id }, { dataSources }) =>
-      dataSources.sxLaunchpad.getLaunchpadById({ id }),
+    singleLaunchpad: async (_parent, { id }, { dataSources }) => {
+      const launchpad = await dataSources.sxLaunchpad.getLaunchpadById({ id });
+      return launchpad;
+    },
 
     multipleLaunchpads: async (_parent, { launchpadIds }, { dataSources }) => {
       if (!launchpadIds.length) return [];

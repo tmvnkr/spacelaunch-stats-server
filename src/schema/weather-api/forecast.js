@@ -2,11 +2,11 @@ import { gql } from 'apollo-server-express';
 
 const typeDefs = gql`
   extend type Query {
-    forecasts(lat: Float, lon: Float): [Forecast]
+    forecast(lat: Float, lon: Float): [Forecast]
     forecastResponseInfo(lat: Float, lon: Float): ForecastResponseInfo
   }
 
-  type Forecast {
+  extend type Forecast {
     dateTime: Int
     temperature: Float
     pressure: Float
