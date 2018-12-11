@@ -39,7 +39,7 @@ app.get('*', (req, res) => {
   res.sendFile(path.resolve(__dirname, 'public', 'index.html'));
 });
 
-// Start our server
+// Start the server
 const PORT = process.env.PORT || 5000;
 app.listen({ port: PORT }, () =>
   console.log(`Server ready at http://localhost:${PORT + server.graphqlPath}`)
