@@ -1,7 +1,10 @@
 {
   "name": "spacex-wiki-server",
   "version": "0.1.0",
-  "description": "Backend for the SpaceX wiki app",
+  "description": "Backend for the Spacelaunch stats app",
+  "author": "Tim Vaneker",
+  "license": "MIT",
+  "private": true,
   "main": "src/server.js",
   "scripts": {
     "start": "node dist/server.js",
@@ -9,8 +12,6 @@
     "delete": "rm -rf dist/*",
     "server": "nodemon --exec babel-node src/server.js"
   },
-  "author": "Tim Vaneker",
-  "license": "MIT",
   "dependencies": {
     "apollo-datasource-rest": "^0.2.1",
     "apollo-server": "^2.2.2",
