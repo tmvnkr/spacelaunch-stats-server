@@ -1,5 +1,5 @@
 {
-  "name": "spacex-wiki-server",
+  "name": "spacelaunch-stats-server",
   "version": "0.1.0",
   "description": "Backend for the Spacelaunch stats app",
   "author": "Tim Vaneker",
