@@ -20,6 +20,18 @@ A majority of the data is currently sourced from [r-spacex/SpaceX-API](https://g
 
 For the client to be able to retrieve information it needs this [spacelaunch-stats-server](https://github.com/vaneker/spacelaunch-stats-server) See the spacelaunch-stats-server GitHub page on any information regarding the server.
 
+After downloading this project, run:
+
+**`npm install`**
+
+### .env file
+To be able to run this project you will have to create a .env file and fill it with your own keys/links, the following are required:
+- SPACEX_API_V3_URL='https://api.spacexdata.com/v3/'
+- OPEN_WEATHER_MAP_API_KEY: api key from [Open Weather Map](https://openweathermap.org/)
+- OPEN_WEATHER_MAP_API='https://api.openweathermap.org/data/2.5/'
+Optional:
+- ENGINE_API_KEY: This is the engine api key from the [Apollo Platform](https://engine.apollographql.com/) (if not used, remove **`engine: {apiKey: process.env.ENGINE_API_KEY}`** from server.js)
+
 ### Available Scripts
 
 In the project directory, you can run:
