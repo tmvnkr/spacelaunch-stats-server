@@ -29,6 +29,7 @@ To be able to run this project you will have to create a .env file and fill it w
 - SPACEX_API_V3_URL='https://api.spacexdata.com/v3/'
 - OPEN_WEATHER_MAP_API_KEY: api key from [Open Weather Map](https://openweathermap.org/)
 - OPEN_WEATHER_MAP_API='https://api.openweathermap.org/data/2.5/'
+
 Optional:
 - ENGINE_API_KEY: This is the engine api key from the [Apollo Platform](https://engine.apollographql.com/) (if not used, remove **`engine: {apiKey: process.env.ENGINE_API_KEY}`** from server.js)
 
