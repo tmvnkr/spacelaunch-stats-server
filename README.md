@@ -4,8 +4,6 @@
 
 <p align="center">
 <a href="https://github.com/vaneker/spacelaunch-stats-server/releases"><img src="https://img.shields.io/badge/version-0.1.0-brightgreen.svg"></a>
-<a href="https://nodejs.org/"><img src="https://img.shields.io/badge/runtime-Node-green.svg"></a>
-<a href="https://graphql.org/"><img src="https://img.shields.io/badge/interface-GraphQL-orange.svg"></a>
 <a href="https://github.com/vaneker/spacelaunch-stats-server/blob/master/LICENSE"><img src="https://img.shields.io/badge/license-MIT-red.svg"></a>
 
 </p>
