@@ -3,6 +3,7 @@
 <h1 align="center">Spacelaunch Stats</h1>
 
 <p align="center">
+<a href="https://www.codacy.com/app/vaneker/spacelaunch-stats-server"><img src="https://api.codacy.com/project/badge/Grade/6bbc5824ec2348bf81d0882d3e70c72a"></a>
 <a href="https://github.com/vaneker/spacelaunch-stats-server/releases"><img src="https://img.shields.io/badge/version-0.1.0-brightgreen.svg"></a>
 <a href="https://github.com/vaneker/spacelaunch-stats-server/blob/master/LICENSE"><img src="https://img.shields.io/badge/license-MIT-red.svg"></a>
 
