@@ -10,7 +10,9 @@
     "start": "node dist/server.js",
     "build": "babel src --ignore */__tests__ --out-dir dist",
     "delete": "rm -rf dist/*",
-    "server": "nodemon --exec babel-node src/server.js"
+    "server": "nodemon --exec babel-node src/server.js",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "dependencies": {
     "apollo-datasource-rest": "^0.2.1",
@@ -21,7 +23,8 @@
     "express": "^5.0.0-alpha.7",
     "graphql": "^14.0.2",
     "helmet": "^3.15.0",
-    "uuid": "^3.3.2"
+    "uuid": "^3.3.2",
+    "snyk": "^1.316.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.1.5",
@@ -30,5 +33,6 @@
     "@babel/preset-env": "^7.1.6",
     "babel-preset-minify": "^0.5.0",
     "nodemon": "^1.18.6"
-  }
+  },
+  "snyk": true
 }
